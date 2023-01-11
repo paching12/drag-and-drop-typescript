@@ -12,6 +12,8 @@ function Autobind(_: any, _1: string | Symbol, descriptor: PropertyDescriptor) {
   return adjDescriptor;
 }
 
+type IUserInputs = [string, string, number];
+
 class ProjectInput {
   templateElement: HTMLTemplateElement;
   hostElement: HTMLDivElement;
@@ -46,10 +48,44 @@ class ProjectInput {
     this.attach();
   }
 
+  private gatherUserInput(): IUserInputs | void {
+    const enteredTitle = this.titleInputElement.value;
+    const enteredDescription = this.descriptionInputElement.value;
+    const enteredPeople = this.peopleInputElement.value;
+
+    const inputsBeforeValidation: IUserInputs = [
+      enteredTitle,
+      enteredDescription,
+      +enteredPeople,
+    ];
+
+    const invalid = inputsBeforeValidation.some(
+      (item) => item.toString().trim().length === 0 || item === 0
+    );
+
+    if (invalid) {
+      const errorMessage = "Invalid input, please try again!";
+      alert(errorMessage);
+      return;
+    }
+    return inputsBeforeValidation;
+  }
+
+  private clearInputs() {
+    this.titleInputElement.value = "";
+    this.descriptionInputElement.value = "";
+    this.peopleInputElement.value = "";
+  }
+
   @Autobind
   private submitHandler(event: Event) {
     event.preventDefault();
-    console.log(this.titleInputElement.value);
+    const userInput = this.gatherUserInput();
+    if (Array.isArray(userInput)) {
+      const [title, desc, people] = userInput;
+      console.log("title", title, "dec", desc, "people", people);
+      this.clearInputs();
+    }
   }
 
   private configure() {

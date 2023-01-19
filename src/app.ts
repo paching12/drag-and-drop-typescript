@@ -169,7 +169,7 @@ class ProjectInput {
   hostElement: HTMLDivElement;
   element: HTMLFormElement;
   titleInputElement: HTMLInputElement;
-  descriptionInputElement: HTMLInputElement;
+  descriptionInputElement: HTMLTextAreaElement;
   peopleInputElement: HTMLInputElement;
 
   constructor() {
@@ -190,7 +190,7 @@ class ProjectInput {
     ) as HTMLInputElement;
     this.descriptionInputElement = this.element.querySelector(
       "#description"
-    ) as HTMLInputElement;
+    ) as HTMLTextAreaElement;
     this.peopleInputElement = this.element.querySelector(
       "#people"
     ) as HTMLInputElement;

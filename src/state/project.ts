@@ -1,3 +1,5 @@
+/// <reference path="./../models/project.ts"/>
+
 namespace App {
   // Project State Management
   type Listener<T> = (items: T[]) => void;

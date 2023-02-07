@@ -1,12 +1,22 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/app.ts",
+  mode: "development",
+  entry: path.resolve(__dirname, "src/app.ts"),
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/dist",
   },
   devtool: "inline-source-map",
+  devServer: {
+    open: true,
+    port: 3000,
+    static: path.join(__dirname, "/"),
+    hot: true,
+    historyApiFallback: { index: "index.html" },
+  },
+  target: "web",
   module: {
     rules: [
       {
@@ -19,5 +29,4 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".js"],
   },
-  mode: "development",
 };

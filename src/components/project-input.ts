@@ -1,7 +1,7 @@
-import { Component } from "./base-component.js";
-import { projectState } from "../state/project.js";
-import { Validatable, validate } from "./../util/validation.js";
-import { Autobind } from "../decorators/autobind.js";
+import { Component } from "./base-component";
+import { projectState } from "../state/project";
+import { Validatable, validate } from "./../util/validation";
+import { Autobind } from "../decorators/autobind";
 
 // User input interface
 type IUserInputs = [string, string, number];

@@ -13,8 +13,6 @@ module.exports = {
     open: true,
     port: 3000,
     static: path.join(__dirname, "/"),
-    hot: true,
-    historyApiFallback: { index: "index.html" },
   },
   target: "web",
   module: {

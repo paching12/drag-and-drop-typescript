@@ -1,10 +1,20 @@
 import axios from "../node_modules/axios/index";
 
+declare const google: any;
+
+declare global {
+  interface Window {
+    initMap: any;
+  }
+}
+
+function initMap() {}
+
+window.initMap = initMap;
+
 window.addEventListener("load", () => {
   const form = document.querySelector("form")! as HTMLFormElement;
   const addressInput = document.getElementById("address")! as HTMLInputElement;
-
-  console.log("form", form);
 
   const GOOGLE_API = "AIzaSyCjfT0bXL7xCUOvVSI5Mem3QompB31VIyM";
 
@@ -40,7 +50,21 @@ window.addEventListener("load", () => {
         throw new Error("Could not fetch location");
       const coordinates = response.data.results?.[0]?.geometry.location;
 
-      console.log(coordinates);
+      // Initialize and add the map
+      // The map, centered at Uluru
+      const map = new google.maps.Map(
+        document.getElementById("map") as HTMLElement,
+        {
+          zoom: 4,
+          center: coordinates,
+        }
+      );
+
+      // The marker, positioned at Uluru
+      const marker = new google.maps.Marker({
+        position: coordinates,
+        map: map,
+      });
     } catch (error) {
       alert(error);
       console.error(error);

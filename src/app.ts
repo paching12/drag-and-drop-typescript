@@ -16,7 +16,7 @@ window.addEventListener("load", () => {
   const form = document.querySelector("form")! as HTMLFormElement;
   const addressInput = document.getElementById("address")! as HTMLInputElement;
 
-  const GOOGLE_API = "AIzaSyCjfT0bXL7xCUOvVSI5Mem3QompB31VIyM";
+  const GOOGLE_API = "";
 
   async function searchAddressHandler(event: Event) {
     event.preventDefault();
